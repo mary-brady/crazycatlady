@@ -32,6 +32,8 @@ const mittens = {
     moodIndex: 0,
 
 }
+let activeCat = mrSnibbly;
+
 let cats = [mrSnibbly, mittens]
 
 const catImg = document.getElementById('cat-img')
@@ -66,11 +68,21 @@ function reset(cat) {
 }
 
 function drawButtons() {
-
+    let template = ''
+    for (let i = 0; i < cats.length; i++) {
+        const cat = cats[i];
+        template +=`
+        <button onclick="setActiveCat"(${i})>${cat.name}
+        </button>
+        `       
+    }
+    document.getElementById('cat-button').innerHTML = template
 }
 
-function setActiveCat() {
+function setActiveCat(catIndex) {
+    activeCat = cats[catIndex];
 
+draw()
 }
-
+drawButtons()
 draw()
